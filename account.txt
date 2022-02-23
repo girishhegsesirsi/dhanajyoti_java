@@ -1,0 +1,34 @@
+{
+"acct_id":8,
+ "int_rate": 5.5, 
+   "acct_banance": 10000, 
+   "account_created_date": "2020-04-01",
+   "account_updated_date":"2020-04-01",
+   "acct_type":"S",
+   "acct_status":"A",
+     "user": {
+ "username": "girishhegde", 
+   "password": "hegde", 
+   "role": "C",
+   "user_status":"A",
+   "user_id":8,
+   "fname": "girish", 
+   "lname": "hegde", 
+   "dob": "1990-03-01",
+   "gender":"male",
+   "address":
+   {
+   "addr_id":6,	
+ "adrl1": "huskur",
+"adrl2": "electronic city",
+"city": "bengaluru",
+"state": "karnataka",
+"pin": 560100
+   },
+
+  "mobile": 1234567890,
+"email":"girish@gail.com",
+"adhaar": 12434567899,
+"pan": "qwepn1234d"
+}
+}

@@ -1,0 +1,6 @@
+moneybank\netbanking\controller\RegistrationController.class
+moneybank\netbanking\beans\Student.class
+moneybank\netbanking\beans\Address.class
+netbanking\MoneyBank\App.class
+moneybank\netbanking\beans\Emp.class
+moneybank\netbanking\editors\StudentNameEditor.class

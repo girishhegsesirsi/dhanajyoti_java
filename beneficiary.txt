@@ -1,0 +1,25 @@
+{
+	"ben_type":"test",
+	"ben_nick_name":"abc",
+	"ben_account_num":5,
+	"ben_bank_ifsc":"MB000001",
+	  "user": {
+ "username": "girishhegde", 
+   "password": "hegde", 
+   "role": "C",
+   "user_status":"A",
+   "user_id":8,
+   "fname": "girish", 
+   "lname": "hegde", 
+   "dob": "1990-03-01",
+   "gender":"male",
+   "address":
+   {
+   "addr_id":5,	
+ "adrl1": "huskur",
+"adrl2": "electronic city",
+"city": "bengaluru",
+"state": "karnataka",
+"pin": 560100
+   }
+}}

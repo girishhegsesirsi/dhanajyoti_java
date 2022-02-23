@@ -1,0 +1,22 @@
+{
+	"cust_id":1,
+   
+   "fname": "girish", 
+   "lname": "hegde", 
+   "dob": "1990-03-01",
+   "gender":"male",
+   "address":
+   {
+   	"adr_id":1,
+   	"adrl1": "huskur",
+"adrl2": "electronic city",
+"city": "bengaluru",
+"state": "karnataka",
+"pin": 560100
+   },
+
+  "mobile": 1234567890,
+"email":"girish@gail.com",
+"adhaar": 12434567899,
+"pan": "qwepn1234d"
+}

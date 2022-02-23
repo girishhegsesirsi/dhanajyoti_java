@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:context = "http://www.springframework.org/schema/context"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:mvc="http://www.springframework.org/schema/mvc"
+   xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:p="http://www.springframework.org/schema/p"
+   xsi:schemaLocation = "http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+http://www.springframework.org/schema/beans     
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context 
+http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+    <context:annotation-config></context:annotation-config>
+   <mvc:annotation-driven />
+   
+      <context:component-scan base-package="moneybank.netbanking.controller"/>
+      <context:component-scan base-package="moneybank.netbanking.serviceImpl"/>
+      <context:component-scan base-package="moneybank.netbanking.daoImpl"/>
+   
+   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+   		<property name="prefix" value="/WEB-INF/jsp/"/>
+   		<property name="suffix" value=".jsp"></property> 
+	</bean>
+  
+   <bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="/WEB-INF/messages"></property>
+   </bean>
+   
+      
+<!-- hibernate configuration start-->
+   
+  <!-- Enable Annotation based Declarative Transaction Management -->
+   <tx:annotation-driven proxy-target-class="true"
+     transaction-manager="transactionManager" />
+ 
+
+
+<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${driver.class.name}"></property>
+		<property name="url" value="${db.url}"></property>
+		<property name="username" value="${db.username}"></property>
+		<property name="password" value="${db.password}"></property>
+</bean>
+
+<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+
+		<property name="annotatedClasses">
+			<array>
+				<value>moneybank.netbanking.beans.Customer</value>
+				<value>moneybank.netbanking.beans.User</value>
+				<value>moneybank.netbanking.beans.Kyc</value>
+				<value>moneybank.netbanking.beans.Address</value>
+				<value>moneybank.netbanking.beans.UserLoginData</value>
+				<value>moneybank.netbanking.beans.Token</value>
+				<value>moneybank.netbanking.beans.Account</value>
+				<value>moneybank.netbanking.beans.SavingAccount</value>
+				<value>moneybank.netbanking.beans.TermDepAccount</value>
+				<value>moneybank.netbanking.beans.Transaction</value>
+				<value>moneybank.netbanking.beans.Beneficiary</value>
+				<value>moneybank.netbanking.beans.ServiceRequest</value>
+			</array>
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.c3p0.min_size">5</prop>
+				<prop key="hibernate.c3p0.max_size">20</prop>
+				<prop key="hibernate.c3p0.acquire_increment">1</prop>
+				<prop key="hibernate.c3p0.timeout">1800</prop>
+				<prop key="hibernate.c3p0.max_statement">150</prop>
+			</props>
+		</property>
+</bean>
+ <bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+		<property name="checkWriteOperations" value="false"></property>
+</bean>
+
+<!-- Creating TransactionManager Bean, since JDBC we are creating of type 
+    DataSourceTransactionManager -->
+<bean id="transactionManager"
+    class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+    <property name="sessionFactory" ref="sessionFactory" />
+</bean>
+	
+<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<array>
+				<value>/WEB-INF/database.properties</value>
+			</array>
+		</property>
+</bean>
+
+<!-- hibernate configuration end-->
+  
+<bean id="multipartResolver"
+    class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+    p:defaultEncoding="utf-8" >
+    <!-- one of the properties available; the maximum file size in bytes -->  
+    <!-- <property name="maxUploadSize" value="40000000" /> -->  
+</bean>
+   
+</beans>
